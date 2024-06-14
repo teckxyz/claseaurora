@@ -1,0 +1,1838 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase Aurora 2024 - Estudiantes 🎓</title>
+    <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="batches.css">
+    <style>
+        .wrapper {
+            background: url(./assets/backgroundyearbook.png) fixed no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .card {
+            display: inline-block;
+            text-align: center;
+            margin: 20px;
+            cursor: pointer;
+            width: 300px;
+        }
+
+        .card img {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-height: 400px;
+            object-fit: cover;
+        }
+
+        .card .student-name {
+            margin-top: 10px;
+            font-size: 18px;
+            color: white; /* Cambiado a blanco */
+            font-weight: bold;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background-color: transparent;
+            margin: auto;
+            padding: 20px;
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            position: relative;
+            border: 10px solid white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+        }
+
+        .details {
+            text-align: center;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.7);
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .details .name,
+        .details .year,
+        .details .position {
+            margin: 5px 0; /* Ajusta el valor según sea necesario */
+        }
+
+        .close {
+            color: #aaa;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .connect {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .connect img {
+            width: 40px;
+            height: 40px;
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                width: 90%;
+                margin: 10px auto;
+            }
+
+            .modal-content {
+                width: 90%;
+                padding: 10px;
+            }
+
+            .close {
+                top: 5px;
+                right: 10px;
+                font-size: 24px;
+            }
+        }
+    </style>
+<div class="wrapper">
+    <style>
+        /* Base styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Navigation bar styles */
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1em;
+            color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-bar .logo img {
+            height: 40px;
+            margin-right: 0.5em;
+        }
+
+        .nav-bar .links {
+            display: none;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-bar .links li {
+            margin: 0 1em;
+        }
+
+        .nav-bar .links.active {
+            display: flex;
+        }
+
+        .nav-bar .links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-bar .links a:hover {
+            color: #ccc;
+        }
+
+        .nav-bar .toggle_button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #fff;
+            border: none;
+            background: transparent;
+            outline: none;
+        }
+
+        /* Search bar styles */
+        #search {
+            display: flex;
+            align-items: center;
+        }
+
+        #form {
+            display: flex;
+            align-items: center;
+        }
+
+        #input {
+            padding: 0.5em;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-right: 0.5em;
+        }
+
+        #input:focus {
+            outline: none;
+            border-color: #66afe9;
+            box-shadow: 0 0 5px #66afe9;
+        }
+
+        #form button {
+            padding: 0.5em 1em;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #form button:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
+
+    <nav class="nav-bar">
+        <div class="logo">
+            <img src="./assets/logo.jpg" alt="" height="40px">
+            <h1 style="margin: 0;">Clase Aurora 2024</h1>
+        </div>
+        <div id="search">
+            <form action="" id="form">
+                <input type="text" placeholder="Enter name" id="input">
+                <button>Search</button>
+            </form>
+        </div>
+        <ul class="links">
+            <li><a href="../index">🏠</a></li>
+            <li><a href="../album">Álbum</a></li>
+            <li><a href="/2023-2024/alumnos">Alumnos</a></li>
+            <li><a href="../clipsitos/clips">Clips</a></li>
+        </ul>
+        <button class="toggle_button" onclick="toggleMenu()">☰</button>
+    </nav>
+
+    <script>
+        function toggleMenu() {
+            var links = document.querySelector('.nav-bar .links');
+            links.classList.toggle('active');
+        }
+    </script>
+
+        <div class="section">
+            <div id="result"></div>
+
+            <div class="hero-section">
+                <!-- Tarjetas de ejemplo -->
+                <div class="card glossy" onclick="openModal('modal1')">
+                    <div class="avatar">
+                        <img src="FotosEstudiantes/IMG_9198.jpg" alt="Alana Vega">
+                        <div class="student-name">Alana Vega</div>
+                    </div>
+                </div>
+
+                <div class="card glossy" onclick="openModal('modal2')">
+                    <div class="avatar">
+                        <img src="FotosEstudiantes/demhara.jpg" alt="Demhara Gobaira">
+                        <div class="student-name">Demhara Gobaira</div>
+                    </div>
+                </div>
+                <div class="card glossy" onclick="openModal('modal3')">
+                    <div class="avatar">
+                        <img src="FotosEstudiantes/IMG_8990.jpg" alt="Yuleischka Berrios">
+                        <div class="student-name">Yuleischka Berrios</div>
+                    </div>
+                </div>
+                <div class="card glossy" onclick="openModal('modal4')">
+                    <div class="avatar">
+                        <img src="FotosEstudiantes/IMG_9106.jpg" alt="Natalie Toro">
+                        <div class="student-name">Natalie Toro</div>
+                    </div>
+                </div>
+                <div class="card glossy" onclick="openModal('modal5')">
+                    <div class="avatar">
+                        <img src="FotosEstudiantes/IMG_8809.jpg" alt="Lydia Richter">
+                        <div class="student-name">Lydia Richter</div>
+                    </div>
+                </div>
+                <div class="card glossy" onclick="openModal('modal6')">
+                    <div class="avatar">
+                        <img src="FotosEstudiantes/IMG_9105.jpg" alt="Allison Toro">
+                        <div class="student-name">Allison Toro</div>
+                    </div>
+                </div>
+                <div class="card glossy" onclick="openModal('modal7')">
+                    <div class="avatar">
+                        <img src="FotosEstudiantes/IMG_8687 (1).jpg" alt="Emilio Cedeño">
+                        <div class="student-name">Emilio Cedeño</div>
+                    </div>
+                </div>
+                <div class="card glossy" onclick="openModal('modal8')">
+                    <div class="avatar">
+                        <img src="FotosEstudiantes/IMG_8695-Edit.jpg" alt="Zahelys Cruz">
+                        <div class="student-name">Zahelys Cruz</div>
+                    </div>
+                </div>
+                <div class="card glossy" onclick="openModal('modal9')">
+                    <div class="avatar">
+                        <img src="FotosEstudiantes/IMG_8867.jpg" alt="Mariana Figueroa">
+                        <div class="student-name">Mariana Figueroa</div>
+                    </div>
+                </div>
+                <div class="card glossy" onclick="openModal('modal10')">
+                    <div class="avatar">
+                        <img src="FotosEstudiantes/IMG_9251.jpg" alt="Natalia Vélez">
+                        <div class="student-name">Natalia Vélez</div>
+                    </div>
+                </div>
+                <div class="card glossy" onclick="openModal('modal11')">
+                    <div class="avatar">
+                        <img src="FotosEstudiantes/IMG_8701-Edit.jpg" alt="Dalynn Díaz">
+                        <div class="student-name">Dalynn Díaz</div>
+                    </div>
+                </div>
+                <div class="card glossy" onclick="openModal('modal12')">
+                    <div class="avatar">
+                        <img src="FotosEstudiantes/IMG_8692.jpg" alt="Angel Javier Álamo Colón">
+                        <div class="student-name">Angel Javier Álamo Colón</div>
+                    </div>
+                </div>
+                <div class="card glossy" onclick="openModal('modal13')">
+                    <div class="avatar">
+                        <img src="FotosEstudiantes/yadi.jpg" alt="Yadier Fuentes Casiano">
+                        <div class="student-name">Yadier Fuentes Casiano</div>
+                    </div>
+                </div>
+                <div class="card glossy" onclick="openModal('modal14')">
+                    <div class="avatar">
+                        <img src="FotosEstudiantes/IMG_8736.jpg" alt="Amanda Sofía López Rivera">
+                        <div class="student-name">Amanda Sofía López Rivera</div>
+                    </div>
+                </div>
+                <div class="card glossy" onclick="openModal('modal15')">
+                    <div class="avatar">
+                        <img src="FotosEstudiantes/IMG_8750.jpg" alt="Diego Alejandro López Vergelli">
+                        <div class="student-name">Diego Alejandro López Vergelli</div>
+                    </div>
+                </div>
+                <div class="card glossy" onclick="openModal('modal16')">
+                    <div class="avatar">
+                        <img src="FotosEstudiantes/IMG_8751.jpg" alt="Jorge Bosch Aponte">
+                        <div class="student-name">Jorge Bosch Aponte</div>
+                    </div>
+                </div>
+                <div class="card glossy" onclick="openModal('modal17')">
+                    <div class="avatar">
+                        <img src="FotosEstudiantes/IMG_8760 (1).jpg" alt="Alexa Medina">
+                        <div class="student-name">Alexa Medina</div>
+                    </div>
+                </div>
+                <div class="card glossy" onclick="openModal('modal18')">
+                    <div class="avatar">
+                        <img src="FotosEstudiantes/IMG_8776.jpg" alt="Tatiana Morales Trinidad">
+                        <div class="student-name">Tatiana Morales Trinidad</div>
+                    </div>
+                </div>
+                <div class="card glossy" onclick="openModal('modal19')">
+                    <div class="avatar">
+                        <img src="FotosEstudiantes/IMG_8779.jpg" alt="Jeriel Nieves Morales">
+                        <div class="student-name">Jeriel Nieves Morales</div>
+                    </div>
+                </div>
+                <div class="card glossy" onclick="openModal('modal20')">
+                    <div class="avatar">
+                        <img src="FotosEstudiantes/IMG_8803.jpg" alt="Julianet Robles López">
+                        <div class="student-name">Julianet Robles López</div>
+                    </div>
+                </div>
+                <div class="card glossy" onclick="openModal('modal21')">
+                    <div class="avatar">
+                        <img src="FotosEstudiantes/IMG_8806.jpg" alt="Gerardo Sánchez Díaz">
+                        <div class="student-name">Gerardo Sánchez Díaz</div>
+                    </div>
+                </div>
+                <div class="card glossy" onclick="openModal('modal22')">
+                    <div class="avatar">
+                        <img src="FotosEstudiantes/IMG_8809.jpg" alt="Lydia Richter Román">
+                        <div class="student-name">Lydia Richter Román</div>
+                    </div>
+                </div>
+                <div class="card glossy" onclick="openModal('modal23')">
+                    <div class="avatar">
+                        <img src="FotosEstudiantes/IMG_8812.jpg" alt="Alannys Rodríguez López">
+                        <div class="student-name">Alannys Rodríguez López</div>
+                    </div>
+                </div>
+                <div class="card glossy" onclick="openModal('modal24')">
+                    <div class="avatar">
+                        <img src="FotosEstudiantes/IMG_8816.jpg" alt="Arianis Sánchez Jiménez">
+                        <div class="student-name">Arianis Sánchez Jiménez</div>
+                    </div>
+                </div>
+                <div class="card glossy" onclick="openModal('modal25')">
+                    <div class="avatar">
+                        <img src="FotosEstudiantes/IMG_8836.jpg" alt="Yan Torres Figueroa">
+                        <div class="student-name">Yan Torres Figueroa</div>
+                    </div>
+                </div>
+                <div class="card glossy" onclick="openModal('modal26')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/IMG_8846.jpg" alt="Karina Lauren Zayas Cotto">
+                    <div class="student-name">Karina Lauren Zayas Cotto</div>
+                </div>
+            </div>
+            <div class="card glossy" onclick="openModal('modal27')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/IMG_8854.jpg" alt="Ariana Viera Zayas">
+                    <div class="student-name">Ariana Viera Zayas</div>
+                </div>
+            </div>
+            <div class="card glossy" onclick="openModal('modal28')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/IMG_8857.jpg" alt="Alegna Schade Figueroa Vázquez">
+                    <div class="student-name">Alegna Schade Figueroa Vázquez</div>
+                </div>
+            </div>
+            <div class="card glossy" onclick="openModal('modal29')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/IMG_8865.jpg" alt="Natalie Bacchus Esteban">
+                    <div class="student-name">Natalie Bacchus Esteban</div>
+                </div>
+            </div>
+            <div class="card glossy" onclick="openModal('modal30')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/IMG_8870.jpg" alt="Bryan Galarza">
+                    <div class="student-name">Bryan Galarza</div>
+                </div>
+            </div>
+            <div class="card glossy" onclick="openModal('modal31')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/IMG_8872.jpg" alt="Camille Estrada">
+                    <div class="student-name">Camille Estrada</div>
+                </div>
+            </div>
+            <div class="card glossy" onclick="openModal('modal32')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/IMG_8876.jpg" alt="Gustavo Pagán">
+                    <div class="student-name">Gustavo Pagán</div>
+                </div>
+            </div>
+            <div class="card glossy" onclick="openModal('modal33')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/IMG_8881.jpg" alt="Roque Limage">
+                    <div class="student-name">Roque Limage</div>
+                </div>
+            </div>
+            <div class="card glossy" onclick="openModal('modal34')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/IMG_8889.jpg" alt="Jeishelan Gómez">
+                    <div class="student-name">Jeishelan Gómez</div>
+                </div>
+            </div>
+            <div class="card glossy" onclick="openModal('modal35')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/IMG_8922.jpg" alt="Laura Ortíz">
+                    <div class="student-name">Laura Ortíz</div>
+                </div>
+            </div>
+            <div class="card glossy" onclick="openModal('modal36')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/paul.jpg" alt="Paul Ortíz">
+                    <div class="student-name">Paul Ortíz</div>
+                </div>
+            </div>
+            <div class="card glossy" onclick="openModal('modal37')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/IMG_8966.jpg" alt="Yanay Pagán">
+                    <div class="student-name">Yanay Pagán</div>
+                </div>
+            </div>
+            <div class="card glossy" onclick="openModal('modal38')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/IMG_8994.jpg" alt="Ayeisha Garay">
+                    <div class="student-name">Ayeisha Garay</div>
+                </div>
+            </div>
+            <div class="card glossy" onclick="openModal('modal39')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/IMG_9001-Edit.jpg" alt="Sebastián Burgos">
+                    <div class="student-name">Sebastián Burgos</div>
+                </div>
+            </div>
+            <div class="card glossy" onclick="openModal('modal40')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/IMG_9032-Edit.jpg" alt="Kiara Febus">
+                    <div class="student-name">Kiara Febus</div>
+                </div>
+            </div>
+            <div class="card glossy" onclick="openModal('modal41')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/IMG_9052.jpg" alt="Arianna Aponte">
+                    <div class="student-name">Arianna Aponte</div>
+                </div>
+            </div>
+            <div class="card glossy" onclick="openModal('modal42')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/IMG_9054.jpg" alt="Danna Ortíz">
+                    <div class="student-name">Danna Ortíz</div>
+                </div>
+            </div>
+            <div class="card glossy" onclick="openModal('modal43')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/IMG_9056.jpg" alt="Fabian Bruno">
+                    <div class="student-name">Fabian Bruno</div>
+                </div>
+            </div>
+            <div class="card glossy" onclick="openModal('modal44')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/IMG_9061.jpg" alt="Ariana Roldán">
+                    <div class="student-name">Ariana Roldán</div>
+                </div>
+            </div>
+            <div class="card glossy" onclick="openModal('modal45')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/IMG_9091.jpg" alt="Diego Ortíz">
+                    <div class="student-name">Diego Ortíz</div>
+                </div>
+            </div>
+            <div class="card glossy" onclick="openModal('modal46')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/IMG_9093.jpg" alt="Kaylee Toro">
+                    <div class="student-name">Kaylee Toro</div>
+                </div>
+            </div>
+            <div class="card glossy" onclick="openModal('modal47')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/IMG_9100.jpg" alt="Yeriel Ruíz">
+                    <div class="student-name">Yeriel Ruíz</div>
+                </div>
+            </div>
+            <div class="card glossy" onclick="openModal('modal48')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/IMG_9113.jpg" alt="Havibeh Wheeler">
+                    <div class="student-name">Havibeh Wheeler</div>
+                </div>
+            </div>
+            <div class="card glossy" onclick="openModal('modal49')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/IMG_9118.jpg" alt="Abdiel Trinidad">
+                    <div class="student-name">Abdiel Trinidad</div>
+                </div>
+            </div>
+            <div class="card glossy" onclick="openModal('modal50')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/IMG_9131.jpg" alt="Karlianis Torres">
+                    <div class="student-name">Karlianis Torres</div>
+                </div>
+            </div>
+            <div class="card glossy" onclick="openModal('modal51')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/IMG_9133.jpg" alt="Luis Adams">
+                    <div class="student-name">Luis Adams</div>
+                </div>
+            </div>
+            <div class="card glossy" onclick="openModal('modal52')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/IMG_9136.jpg" alt="Adiel González">
+                    <div class="student-name">Adiel González</div>
+                </div>
+            </div>
+            <div class="card glossy" onclick="openModal('modal53')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/IMG_9265.jpg" alt="Adrián Canales">
+                    <div class="student-name">Adrián Canales</div>
+                </div>
+            </div>
+            <div class="card glossy" onclick="openModal('modal54')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/IMG_9223.jpg" alt="Diego Pérez">
+                    <div class="student-name">Diego Pérez</div>
+                </div>
+            </div>
+            <div class="card glossy" onclick="openModal('modal55')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/IMG_9258.jpg" alt="Christopher Vázquez">
+                    <div class="student-name">Christopher Vázquez</div>
+                </div>
+            </div>
+            <div class="card glossy" onclick="openModal('modal56')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/IMG_9160.jpg" alt="Diego Rivera">
+                    <div class="student-name">Diego Rivera</div>
+                </div>
+            </div>
+            <div class="card glossy" onclick="openModal('modal57')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/IMG_9162.jpg" alt="Yohamy Pérez">
+                    <div class="student-name">Yohamy Pérez</div>
+                </div>
+            </div>
+            <div class="card glossy" onclick="openModal('modal58')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/IMG_9166.jpg" alt="Alnelis Ortega">
+                    <div class="student-name">Alnelis Ortega</div>
+                </div>
+            </div>
+            <div class="card glossy" onclick="openModal('modal59')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/IMG_9185.jpg" alt="Adrielys Román">
+                    <div class="student-name">Adrielys Román</div>
+                </div>
+            </div>
+            <div class="card glossy" onclick="openModal('modal60')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/IMG_9189.jpg" alt="Tyara Ruíz">
+                    <div class="student-name">Tyara Ruíz</div>
+                </div>
+            </div>
+            <div class="card glossy" onclick="openModal('modal61')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/IMG_9192.jpg" alt="Karielys Ruíz">
+                    <div class="student-name">Karielys Ruíz</div>
+                </div>
+            </div>
+            <div class="card glossy" onclick="openModal('modal62')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/IMG_9194 (1).jpg" alt="Xadriel Sosa">
+                    <div class="student-name">Xadriel Sosa</div>
+                </div>
+            </div>
+            <div class="card glossy" onclick="openModal('modal63')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/IMG_9202.jpg" alt="Julianna Serrano">
+                    <div class="student-name">Julianna Serrano</div>
+                </div>
+            </div>
+            <div class="card glossy" onclick="openModal('modal64')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/IMG_9225.jpg" alt="Olban Rivera">
+                    <div class="student-name">Olban Rivera</div>
+                </div>
+            </div>
+            <div class="card glossy" onclick="openModal('modal65')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/IMG_9249.jpg" alt="Josué Vázquez">
+                    <div class="student-name">Josué Vázquez</div>
+                </div>
+            </div>
+            <div class="card glossy" onclick="openModal('modal66')">
+                <div class="avatar">
+                    <img src="FotosEstudiantes/IMG_9264 (1).jpg" alt="Alanis Medina">
+                    <div class="student-name">Alanis Medina</div>
+                </div>
+            </div>
+            </div>
+            </div>
+        </div>
+        <br>
+
+        <!-- Modales de ejemplo -->
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal1')">&times;</span>
+                <img src="FotosEstudiantes/IMG_9198.jpg" alt="Alana Vega">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Alana Vega</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Roble</span>
+                    </div>
+                    <div class="position">
+                        <span class="heading">Puesto:</span>
+                        <span class="content">Presidenta</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="modal2" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal2')">&times;</span>
+                <img src="FotosEstudiantes/demhara.jpg" alt="Demhara Gobaira">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Demhara Gobaira</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Violeta</span>
+                    </div>
+                         <div class="position">
+                        <span class="heading">Puesto:</span>
+                        <span class="content">Vicepresidenta</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal3" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal3')">&times;</span>
+                <img src="FotosEstudiantes/IMG_8990.jpg" alt="Yuleischka Berrios">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Yuleischka Berrios</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Roble</span>
+                    </div>
+                         <div class="position">
+                        <span class="heading">Puesto:</span>
+                        <span class="content">Tesorera</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal4" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal4')">&times;</span>
+                <img src="FotosEstudiantes/IMG_9106.jpg" alt="Natalie Toro">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Natalie Toro</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Cupey</span>
+                    </div>
+                         <div class="position">
+                        <span class="heading">Puesto:</span>
+                        <span class="content">Sub-Tesorera</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal5" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal5')">&times;</span>
+                <img src="FotosEstudiantes/IMG_8809.jpg" alt="Lydia Richter">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Lydia Richter</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Violeta</span>
+                    </div>
+                         <div class="position">
+                        <span class="heading">Puesto:</span>
+                        <span class="content">Secretaria</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal6" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal6')">&times;</span>
+                <img src="FotosEstudiantes/IMG_9105.jpg" alt="Allison Toro">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Allison Toro</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Cupey</span>
+                    </div>
+                         <div class="position">
+                        <span class="heading">Puesto:</span>
+                        <span class="content">Historiadora</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal7" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal7')">&times;</span>
+                <img src="FotosEstudiantes/IMG_8687 (1).jpg" alt="Emilio Cedeño">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Emilio Cedeño</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Violeta</span>
+                    </div>
+                         <div class="position">
+                        <span class="heading">Puesto:</span>
+                        <span class="content">Editor</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal8" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal8')">&times;</span>
+                <img src="FotosEstudiantes/IMG_8695-Edit.jpg" alt="Zahelys Cruz">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Zahelys Cruz</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Violeta</span>
+                    </div>
+                         <div class="position">
+                        <span class="heading">Puesto:</span>
+                        <span class="content">Vocal</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal9" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal9')">&times;</span>
+                <img src="FotosEstudiantes/IMG_8867.jpg" alt="Mariana Figueroa">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Mariana Figueroa</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Cupey</span>
+                    </div>
+                         <div class="position">
+                        <span class="heading">Puesto:</span>
+                        <span class="content">Vocal</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal10" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal10')">&times;</span>
+                <img src="FotosEstudiantes/IMG_9251.jpg" alt="Natalia Vélez">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Natalia Vélez</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Roble</span>
+                    </div>
+                         <div class="position">
+                        <span class="heading">Puesto:</span>
+                        <span class="content">Vocal</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal11" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal11')">&times;</span>
+                <img src="FotosEstudiantes/IMG_8701-Edit.jpg" alt="Dalynn Díaz">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Dalynn Díaz</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Violeta</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal12" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal12')">&times;</span>
+                <img src="FotosEstudiantes/IMG_8692.jpg" alt="Angel Javier Álamo Colón">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Angel Javier Álamo Colón</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Violeta</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal13" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal13')">&times;</span>
+                <img src="FotosEstudiantes/yadi.jpg" alt="Yadier Fuentes Casiano">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Yadier Fuentes Casiano</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Violeta</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal14" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal14')">&times;</span>
+                <img src="FotosEstudiantes/IMG_8736.jpg" alt="Amanda Sofía López Rivera">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Amanda Sofía López Rivera</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Violeta</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal15" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal15')">&times;</span>
+                <img src="FotosEstudiantes/IMG_8750.jpg" alt="Diego Alejandro López Vergelli">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Diego Alejandro López Vergelli</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Violeta</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal16" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal16')">&times;</span>
+                <img src="FotosEstudiantes/IMG_8751.jpg" alt="Jorge Bosch Aponte">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Jorge Bosch Aponte</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Violeta</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal17" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal17')">&times;</span>
+                <img src="FotosEstudiantes/IMG_8760 (1).jpg" alt="Alexa Medina">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Alexa Medina</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Violeta</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal18" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal18')">&times;</span>
+                <img src="FotosEstudiantes/IMG_8776.jpg" alt="Tatiana Morales Trinidad">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Tatiana Morales Trinidad</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Violeta</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal19" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal19')">&times;</span>
+                <img src="FotosEstudiantes/IMG_8779.jpg" alt="Jeriel Nieves Morales">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Jeriel Nieves Morales</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Violeta</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal20" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal20')">&times;</span>
+                <img src="FotosEstudiantes/IMG_8803.jpg" alt="Julianet Robles López">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Julianet Robles López</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Violeta</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal21" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal21')">&times;</span>
+                <img src="FotosEstudiantes/IMG_8806.jpg" alt="Gerardo Sánchez Díaz">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Gerardo Sánchez Díaz</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Violeta</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal22" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal22')">&times;</span>
+                <img src="FotosEstudiantes/IMG_8809.jpg" alt="Lydia Richter Román">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Lydia Richter Román</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Violeta</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal23" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal23')">&times;</span>
+                <img src="FotosEstudiantes/IMG_8812.jpg" alt="Alannys Rodríguez López">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Alannys Rodríguez López</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Violeta</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal24" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal24')">&times;</span>
+                <img src="FotosEstudiantes/IMG_8816.jpg" alt="Alannys Rodríguez López">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Arianis Sánchez Jiménez</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Violeta</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal25" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal25')">&times;</span>
+                <img src="FotosEstudiantes/IMG_8836.jpg" alt="Yan Torres Figueroa">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Yan Torres Figueroa</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Violeta</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal26" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal26')">&times;</span>
+                <img src="FotosEstudiantes/IMG_8846.jpg" alt="Karina Lauren Zayas Cotto">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Karina Lauren Zayas Cotto</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Violeta</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal27" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal27')">&times;</span>
+                <img src="FotosEstudiantes/IMG_8854.jpg" alt="Ariana Viera Zayas">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Ariana Viera Zayas</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Violeta</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal28" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal28')">&times;</span>
+                <img src="FotosEstudiantes/IMG_8857.jpg" alt="Alegna Schade Figueroa Vázquez">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Alegna Schade Figueroa Vázquez</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Cupey</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal28" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal28')">&times;</span>
+                <img src="FotosEstudiantes/IMG_8857.jpg" alt="Alegna Schade Figueroa Vázquez">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Alegna Schade Figueroa Vázquez</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Cupey</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal29" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal29')">&times;</span>
+                <img src="FotosEstudiantes/IMG_8865.jpg" alt="Natalie Bacchus Esteban">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Natalie Bacchus Esteban</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Cupey</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal30" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal30')">&times;</span>
+                <img src="FotosEstudiantes/IMG_8870.jpg" alt="Bryan Galarza">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Bryan Galarza</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Cupey</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal31" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal31')">&times;</span>
+                <img src="FotosEstudiantes/IMG_8872.jpg" alt="Camille Estrada">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Camille Estrada</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Roble</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal31" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal31')">&times;</span>
+                <img src="FotosEstudiantes/IMG_8872.jpg" alt="Camille Estrada">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Camille Estrada</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Cupey</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal32" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal32')">&times;</span>
+                <img src="FotosEstudiantes/IMG_8876.jpg" alt="Gustavo Pagán">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Gustavo Pagán</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Roble</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal33" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal33')">&times;</span>
+                <img src="FotosEstudiantes/IMG_8881.jpg" alt="Roque Limage">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Roque Limage</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Roble</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal34" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal34')">&times;</span>
+                <img src="FotosEstudiantes/IMG_8889.jpg" alt="Jeishlean Gómez">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Jeishlean Gómez</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Cupey</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal35" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal35')">&times;</span>
+                <img src="FotosEstudiantes/IMG_8922.jpg" alt="Laura Ortíz">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Laura Ortíz</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Cupey</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal36" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal36')">&times;</span>
+                <img src="FotosEstudiantes/paul.jpg" alt="Paul Ortíz">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Paul Ortíz</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Cupey</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal37" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal37')">&times;</span>
+                <img src="FotosEstudiantes/IMG_8966.jpg" alt="Yanay Pagán">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Yanay Pagán</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Cupey</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal38" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal38')">&times;</span>
+                <img src="FotosEstudiantes/IMG_8994.jpg" alt="Ayeisha Garay">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Ayeisha Garay</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Roble</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal39" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal39')">&times;</span>
+                <img src="FotosEstudiantes/IMG_9001.jpg" alt="Sebastián Burgos">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Sebastián Burgos</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Roble</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal40" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal40')">&times;</span>
+                <img src="FotosEstudiantes/IMG_9032-Edit.jpg" alt="Kiara Febus">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Kiara Febus</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Roble</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal41" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal41')">&times;</span>
+                <img src="FotosEstudiantes/IMG_9052.jpg" alt="Arianna Aponte">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Arianna Aponte</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Roble</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal42" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal42')">&times;</span>
+                <img src="FotosEstudiantes/IMG_9054.jpg" alt="Danna Ortíz">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Danna Ortíz</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Roble</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal43" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal43')">&times;</span>
+                <img src="FotosEstudiantes/IMG_9056.jpg" alt="Fabian Bruno">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Fabian Bruno</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Roble</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal44" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal44')">&times;</span>
+                <img src="FotosEstudiantes/IMG_9061.jpg" alt="Ariana Roldán">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Ariana Roldán</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Cupey</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal45" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal45')">&times;</span>
+                <img src="FotosEstudiantes/IMG_9091.jpg" alt="Diego Ortíz">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Diego Ortíz</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Cupey</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal46" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal46')">&times;</span>
+                <img src="FotosEstudiantes/IMG_9093.jpg" alt="Kaylee Toro">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Kaylee Toro</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Cupey</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal47" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal47')">&times;</span>
+                <img src="FotosEstudiantes/IMG_9100.jpg" alt="Yeriel Ruiz">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Yeriel Ruiz</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Cupey</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal48" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal48')">&times;</span>
+                <img src="FotosEstudiantes/IMG_9113.jpg" alt="Havibeh Wheeler">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Havibeh Wheeler</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Cupey</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal49" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal49')">&times;</span>
+                <img src="FotosEstudiantes/IMG_9118.jpg" alt="Abdiel Trinidad">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Abdiel Trinidad</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Cupey</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal50" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal50')">&times;</span>
+                <img src="FotosEstudiantes/IMG_9131.jpg" alt="Karlianis Torres">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Karlianis Torres</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Cupey</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal51" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal51')">&times;</span>
+                <img src="FotosEstudiantes/IMG_9133.jpg" alt="Luis Adams">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Luis Adams</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Roble</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal52" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal52')">&times;</span>
+                <img src="FotosEstudiantes/IMG_9136.jpg" alt="Adiel González">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Adiel González</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Roble</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal53" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal53')">&times;</span>
+                <img src="FotosEstudiantes/IMG_9265.jpg" alt="Adrián Canales">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Adrián Canales</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Roble</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal54" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal54')">&times;</span>
+                <img src="FotosEstudiantes/IMG_9223.jpg" alt="Diego Pérez">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Diego Pérez</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Roble</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal55" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal55')">&times;</span>
+                <img src="FotosEstudiantes/IMG_9258.jpg" alt="Christopher Vázquez">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Christopher Vázquez</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Cupey</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal56" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal56')">&times;</span>
+                <img src="FotosEstudiantes/IMG_9160.jpg" alt="Diego Rivera">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Diego Rivera</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Cupey</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal57" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal57')">&times;</span>
+                <img src="FotosEstudiantes/IMG_9162.jpg" alt="Yohamy Pérez">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Yohamy Pérez</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Cupey</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal58" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal58')">&times;</span>
+                <img src="FotosEstudiantes/IMG_9166.jpg" alt="Alnelis Ortega">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Alnelis Ortega</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Roble</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal59" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal59')">&times;</span>
+                <img src="FotosEstudiantes/IMG_9185.jpg" alt="Adrielys Román">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Adrielys Román</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Roble</span>
+                    </div>
+                </div>
+            </div>
+        </div>    
+        <div id="modal60" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal60')">&times;</span>
+                <img src="FotosEstudiantes/IMG_9189.jpg" alt="Tyara Ruíz">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Tyara Ruíz</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Roble</span>
+                    </div>
+                </div>
+            </div>
+        </div>     
+        <div id="modal61" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal61')">&times;</span>
+                <img src="FotosEstudiantes/IMG_9192.jpg" alt="Karielys Rosa">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Karielys Rosa</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Roble</span>
+                    </div>
+                </div>
+            </div>
+        </div>     
+        <div id="modal62" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal62')">&times;</span>
+                <img src="FotosEstudiantes/IMG_9194 (1).jpg" alt="Xadriel Sosa">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Xadriel Sosa</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Roble</span>
+                    </div>
+                </div>
+            </div>
+        </div>  
+        <div id="modal63" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal63')">&times;</span>
+                <img src="FotosEstudiantes/IMG_9202.jpg" alt="Julianna Serrano">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Julianna Serrano</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Roble</span>
+                    </div>
+                </div>
+            </div>
+        </div>   
+        <div id="modal64" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal64')">&times;</span>
+                <img src="FotosEstudiantes/IMG_9225.jpg" alt="Olban Rivera">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Olban Rivera</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Roble</span>
+                    </div>
+                </div>
+            </div>
+        </div>  
+        <div id="modal65" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal65')">&times;</span>
+                <img src="FotosEstudiantes/IMG_9249.jpg" alt="Josué Vázquez">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Josué Vázquez</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Cupey</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal66" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal66')">&times;</span>
+                <img src="FotosEstudiantes/IMG_9264 (1).jpg" alt="Alanis Medina">
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Nombre:</span>
+                        <span class="content">Alanis Medina</span>
+                    </div>
+                    <div class="year">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Cupey</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+                             
+
+                    <!-- Aquí puedes añadir más detalles específicos -->
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function openModal(modalId) {
+                var modal = document.getElementById(modalId);
+                modal.style.display = "flex";
+            }
+
+            function closeModal(modalId) {
+                var modal = document.getElementById(modalId);
+                modal.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+                var modals = document.getElementsByClassName("modal");
+                for (var i = 0; i < modals.length; i++) {
+                    if (event.target == modals[i]) {
+                        modals[i].style.display = "none";
+                    }
+                }
+            }
+        </script>
+
+        <div style="display: flex; justify-content: center;">
+            <a href="https://discord.com/users/921925641182535681" target="_blank">
+                <img src="https://discord.c99.nl/widget/theme-4/921925641182535681.png" style="width: 300px;">
+            </a>
+        </div>
+    </div>
+    <script src="search.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>

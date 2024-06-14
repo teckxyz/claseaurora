@@ -1,0 +1,27 @@
+.signika {
+  font-family: "Signika", sans-serif;
+}
+
+.serif {
+  font-family: "Montagu Slab", serif;
+}
+
+input[type="text"], textarea {
+  color: #000; /* Cambia el color del texto a uno visible, por ejemplo, #000 para negro */
+  background-color: #fff; /* Cambia el color de fondo, por ejemplo, #fff para blanco */
+}
+
+<style>
+  .center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ajusta la altura según tus necesidades */
+  }
+</style>
+
+.tiktok-embed {
+  background-color: #c40e0e; /* Cambia esto al color de fondo que desees */
+}
+
+

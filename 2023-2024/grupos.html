@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase Aurora 2024 - Grupos 🎓</title>
+    <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="batches.css">
+    <style>
+        .wrapper {
+            background: url(./assets/backgroundyearbook.png) fixed no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .card {
+            display: inline-block;
+            text-align: center;
+            margin: 20px;
+            cursor: pointer;
+            width: 400px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card img {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-height: 500px;
+            object-fit: cover;
+        }
+
+        .card .group-name {
+            margin-top: 10px;
+            font-size: 22px;
+            color: white;
+            font-weight: bold;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background-color: transparent;
+            margin: auto;
+            padding: 20px;
+            width: 100%;
+            max-width: 700px;
+            text-align: center;
+            position: relative;
+            border: 10px solid white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+        }
+
+        .details {
+            text-align: center;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.7);
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .details .name,
+        .details .year {
+            margin: 5px 0; /* Ajusta el valor según sea necesario */
+        }
+
+        .close {
+            color: #aaa;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .connect {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .connect img {
+            width: 40px;
+            height: 40px;
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                width: 90%;
+                margin: 10px auto;
+            }
+
+            .modal-content {
+                width: 90%;
+                padding: 10px;
+            }
+
+            .close {
+                top: 5px;
+                right: 10px;
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <nav class="nav-bar">
+            <a href="#" class="toggle_button">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </a>
+            <ul class="links" style="list-style-type: none;">
+                <div class="logo">
+                    <img src="https://i.postimg.cc/qRgC2ZfX/logo.png" alt="" height="50px">
+                    <h1>Clase Aurora 2024</h1>
+                </div>
+                <li><a href="../index">🏠</a></li>
+                <li><a href="../album">Álbum</a></li>
+                <li><a href="../videos">Vídeos</a></li>
+                <li><a href="../clipsitos">Clips</a></li>
+                <div id="search">
+                    <form action="" id="form">
+                        <input type="text" placeholder="Nombre del Estudiante" id="input">
+                        <button>Search</button>
+                    </form>
+                </div>
+            </ul>
+        </nav>
+
+        <div class="section">
+            <div id="result"></div>
+
+            <div class="card-container">
+                <!-- Tarjetas de grupos -->
+                <div class="card glossy" onclick="openModal('modalGroup1')">
+                    <div class="avatar">
+                        <img src="Grupos/CPS Grupo Roble.jpg" alt="Roble">
+                        <div class="group-name">Roble</div>
+                    </div>
+                </div>
+
+                <div class="card glossy" onclick="openModal('modalGroup2')">
+                    <div class="avatar">
+                        <img src="Grupos/CPS Violeta.jpg" alt="Violeta">
+                        <div class="group-name">Violeta</div>
+                    </div>
+                </div>
+
+                <div class="card glossy" onclick="openModal('modalGroup3')">
+                    <div class="avatar">
+                        <img src="Grupos/CPS Grupo Cupey.jpg" alt="Cupey">
+                        <div class="group-name">Cupey</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <!-- Modales de grupos -->
+        <div id="modalGroup1" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modalGroup1')">&times;</span>
+                <a href="Grupos/CPS Grupo Roble.jpg" download="Grupo_Roble.jpg">
+                    <img src="Grupos/CPS Grupo Roble.jpg" alt="Roble">
+                </a>
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Grupo Roble</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="modalGroup2" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modalGroup2')">&times;</span>
+                <a href="Grupos/CPS Violeta.jpg" download="Grupo_Violeta.jpg">
+                    <img src="Grupos/CPS Violeta.jpg" alt="Violeta">
+                </a>
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Grupo Violeta</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="modalGroup3" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modalGroup3')">&times;</span>
+                <a href="Grupos/CPS Grupo Cupey.jpg" download="Grupo_Cupey.jpg">
+                    <img src="Grupos/CPS Grupo Cupey.jpg" alt="Cupey">
+                </a>
+                <div class="details">
+                    <div class="name">
+                        <span class="heading">Grupo:</span>
+                        <span class="content">Cupey</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function openModal(modalId) {
+                var modal = document.getElementById(modalId);
+                modal.style.display = "flex";
+            }
+
+            function closeModal(modalId) {
+                var modal = document.getElementById(modalId);
+                modal.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+                var modals = document.getElementsByClassName("modal");
+                for (var i = 0; i < modals.length; i++) {
+                    if (event.target == modals[i]) {
+                        modals[i].style.display = "none";
+                    }
+                }
+            }
+        </script>
+
+        <div style="display: flex; justify-content: center;">
+            <a href="https://discord.com/users/921925641182535681" target="_blank">
+                <img src="https://discord.c99.nl/widget/theme-4/921925641182535681.png" style="width: 300px;">
+            </a>
+        </div>
+    </div>
+    <script src="search.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>
