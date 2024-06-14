@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Clase Aurora - 🏠</title>
+    <title>Clase Aurora - 🎓</title>
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="https://i.postimg.cc/qRgC2ZfX/logo.png" />
     <link rel="stylesheet" href="output.css" />
     <link rel="stylesheet" href="styles.css" />
     <!-- Start - Fonts -->
@@ -26,18 +26,200 @@
     class="dark:bg-black bg-white h-screen text-black dark:text-white px-5 md:px-20 opacity-0 animate-fade-in transition duration-500"
   >
     <!-- Navbar -->
+    <style>
+      .wrapper {
+          background: url(./assets/backgroundyearbook.png) fixed no-repeat;
+          background-size: 100% 100%;
+      }
+
+      .card-container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 20px;
+          padding: 20px;
+      }
+
+      .main-card {
+          display: inline-block;
+          text-align: center;
+          cursor: pointer;
+          width: 80%;
+          border-radius: 15px;
+          overflow: hidden;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          transition: transform 0.2s;
+      }
+
+      .main-card img {
+          display: block;
+          width: 100%;
+          height: auto;
+          object-fit: cover;
+      }
+
+      .sub-card-container {
+          display: flex;
+          justify-content: center;
+          gap: 20px;
+          flex-wrap: wrap;
+      }
+
+      .sub-card {
+          display: inline-block;
+          text-align: center;
+          cursor: pointer;
+          width: 200px;
+          border-radius: 15px;
+          overflow: hidden;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          transition: transform 0.2s;
+      }
+
+      .sub-card:hover {
+          transform: scale(1.05);
+      }
+
+      .sub-card img {
+          display: block;
+          width: 100%;
+          height: auto;
+          object-fit: cover;
+      }
+
+      .group-name {
+          margin-top: 10px;
+          font-size: 22px;
+          color: white;
+          font-weight: bold;
+          background-color: rgba(0, 0, 0, 0.7);
+          padding: 10px;
+      }
+
+      .modal {
+          display: none;
+          position: fixed;
+          z-index: 1000;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          overflow: auto;
+          background-color: rgba(0, 0, 0, 0.8);
+          justify-content: center;
+          align-items: center;
+          padding: 20px;
+      }
+
+      .modal-content {
+          background-color: transparent;
+          margin: auto;
+          padding: 20px;
+          width: 100%;
+          max-width: 700px;
+          text-align: center;
+          position: relative;
+          border: 10px solid white;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          border-radius: 15px;
+      }
+
+      .modal-content img {
+          width: 100%;
+          height: auto;
+          border-radius: 15px;
+      }
+
+      .details {
+          text-align: center;
+          color: white;
+          background-color: rgba(0, 0, 0, 0.7);
+          margin-top: 15px;
+          padding: 10px;
+          border-radius: 10px;
+      }
+
+      .details .name,
+      .details .year {
+          margin: 5px 0;
+      }
+
+      .close {
+          color: #aaa;
+          position: absolute;
+          top: 10px;
+          right: 20px;
+          font-size: 28px;
+          font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+          color: white;
+          text-decoration: none;
+          cursor: pointer;
+      }
+
+      @media (max-width: 600px) {
+          .main-card {
+              width: 100%;
+          }
+
+          .sub-card-container {
+              flex-direction: column;
+              align-items: center;
+          }
+
+          .sub-card {
+              width: 90%;
+          }
+
+          .modal-content {
+              width: 90%;
+              padding: 10px;
+          }
+
+          .close {
+              top: 5px;
+              right: 10px;
+              font-size: 24px;
+          }
+      }
+  </style>
+    <style>
+      /* Add custom CSS styles for the navbar */
+      header {
+          padding-top: 20px; /* Increase the top padding */
+          padding-bottom: 20px; /* Increase the bottom padding */
+          background-color: #000000; /* Change the background color */
+      }
+
+      #nav {
+          padding: 20px 0; /* Increase the vertical padding */
+      }
+
+      .signika {
+          font-size: 24px; /* Increase the font size */
+          color: white; /* Change the text color */
+      }
+
+      /* You can add more custom styling as needed */
+  </style>
+</head>
+<body>
+  <header class="flex w-full overflow-hidden">
+      <nav id="nav" role="navigation" class="w-full">
     <header class="flex w-full overflow-hidden pt-10 pb-1">
       <nav id="nav" role="navigation" class="w-full">
         <div
           class="container mx-auto flex flex-wrap items-center md:flex-no-wrap"
         >
-          <div class="mr-4 md:mr-8">
-            <a href="index" class="text-2xl signika"
-              ><b>Clase Aurora 2024
-                
-              </b>
-            </a>
-          </div>
+        <div class="mr-4 md:mr-8">
+          <a href="index" class="text-2xl signika" style="display: flex; align-items: center;">
+            <img src="https://i.postimg.cc/qRgC2ZfX/logo.png" alt="Imagen" style="width: 50px; margin-right: 10px;">
+            <b>Clase Aurora 2024</b>
+          </a>
+        </div>
           <div class="ml-auto md:hidden">
             <button onclick="menuToggle()" type="button">
               <svg
@@ -57,27 +239,35 @@
             <ul
               id="ulMenu"
               class="flex flex-col duration-300 ease-out sm:transition-none mt-5 mx-4 md:flex-row md:items-center md:mx-0 md:ml-auto md:mt-0 md:pt-0 md:border-0"
-            >
-              <li class="group transition duration-300 ml-5">
-                <a href="index" class="signika text-2xl"
-                  >🏠
-                  <span
-                    class="hidden md:block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-black dark:bg-white"
-                  ></span>
-                  <li class="group transition duration-300 ml-5">
-                    <a href="takeover" class="signika text-2xl"
-                      >Senior Takeover 
-                      <span
-                        class="hidden md:block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-black dark:bg-white"
-                      ></span>
+            ></span>
+            <li class="group transition duration-300 ml-5">
+              <a href="/b/yearbook" class="signika text-2xl"
+                >Yearbook
+                <span
+                  class="hidden md:block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-black dark:bg-white"
+                ></span>
                 </a>
               </li>
               </li>
               <li class="group transition duration-300 ml-5">
-                <a href="cons" class="signika text-2xl"
-                  >Soon👀
+                <a href="/2023-2024/alumnos" class="signika text-2xl"
+                  >Alumnos
                   <span
                     class="hidden md:block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-black dark:bg-white"
+                  ></span>
+                  
+                </li>
+                <li class="group transition duration-300 ml-5">
+                  <a href="album" class="signika text-2xl"
+                    >Álbum
+                    <span
+                      class="hidden md:block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-black dark:bg-white"
+                    ></span>
+                    <li class="group transition duration-300 ml-5">
+                      <a href="/clipsitos/clips" class="signika text-2xl"
+                        >Clips
+                        <span
+                          class="hidden md:block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-black dark:bg-white"
                   ></span>
                 </a>
               </li>
@@ -86,39 +276,137 @@
         </div>
       </nav>
     </header>
+  </header>
+  <style>
+    body {
+      background-image: url('https://i.postimg.cc/5y8Rz8kC/backgroundyearbook.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed; /* Optional, makes the background fixed while scrolling */
+    }
+  </style>
+  
     <!-- Content -->
-    <div class="container mx-auto">
-      <h1 class="text-4xl pt-10 pb-8"><b>Welcome!</b></h1>
-      <div class="grid grid-cols-2 gap-16">
-        <img
-          src="./assets/logo.jpg"
-          alt=""
-          class="col-span-2 md:col-span-1 rounded flex flex-col w-full object-cover h-auto"
-        />
-        <section class="col-span-2 md:col-span-1 my-auto">
-          <p class="text-3xl mb-6">Estimados miembros de la Clase Aurora,  </p>
-          <p class="text-lg mb-4">
-            ¡Bienvenidos a nuestra página web de fotos de la clase graduanda! Es un placer darles la bienvenida a este espacio virtual donde podremos compartir y revivir los maravillosos momentos que hemos compartido a lo largo de nuestra trayectoria como estudiantes.
+  </div>
+          <div class="card-container">
+            <!-- Tarjeta principal de la foto grupal -->
+            <div class="main-card glossy" onclick="openModal('modalGroupAll')">
+                <div class="avatar">
+                    <img src="2023-2024/Grupos/CPSSeniors.jpg" alt="Clase Aurora 2024">
+                    <div class="group-name">Clase Aurora 2024</div>
+                </div>
+            </div>
 
-Aunque aún no nos hemos graduado oficialmente, sabemos que este hito está a la vuelta de la esquina y queremos empezar a celebrarlo desde ahora. Nuestra Clase Aurora ha dejado una huella imborrable en cada uno de nosotros. Hemos forjado amistades duraderas, hemos superado desafíos juntos y hemos construido recuerdos que atesoraremos para siempre.
-          </p>
-          <p class="text-lg mb-4">
-            Esta página web ha sido creada con la intención de ser un refugio digital donde podamos reunir todas las fotografías y momentos especiales que hemos compartido como clase. Aquí encontrarán una amplia galería de imágenes que capturan nuestros mejores momentos en excursiones, actividades escolares, competencias deportivas y eventos destacados.
-
-            Nuestro objetivo es que esta página web sea un espacio interactivo en el que todos puedan participar. Los invitamos a enviar sus propias fotos y a compartir anécdotas y recuerdos con la historiadora. Queremos que cada miembro de la Clase Aurora se sienta parte de este proyecto y contribuya a construir un legado visual que refleje nuestra unión y espíritu.
-          </p>
-          <p class="text-lg">
-</p>
-</p>
-<p class="text-lg mb-4">
-  Con cariño y emoción,
-    Emilio
-          </p>
-        </section>
-      </div>
+            <div class="sub-card-container">
+                <!-- Tarjetas de grupos pequeñas -->
+                <div class="sub-card glossy" onclick="openModal('modalGroup2')">
+                  <div class="avatar">
+                      <img src="2023-2024/Grupos/CPSVioleta.jpg" alt="Violeta">
+                      <div class="group-name">Violeta</div>
+                  </div>
+              </div>
+              <div class="sub-card glossy" onclick="openModal('modalGroup3')">
+                <div class="avatar">
+                    <img src="2023-2024/Grupos/CPSGrupoCupey.jpg" alt="Cupey">
+                    <div class="group-name">Cupey</div>
+                </div>
+            </div>
+                <div class="sub-card glossy" onclick="openModal('modalGroup1')">
+                    <div class="avatar">
+                        <img src="2023-2024/Grupos/CPSGrupoRoble.jpg" alt="Roble">
+                        <div class="group-name">Roble</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <!-- Footer -->
-    <footer>
+
+    <!-- Modales de grupos -->
+    <div id="modalGroup1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modalGroup1')">&times;</span>
+            <a href="2023-2024/Grupos/CPSGrupoRoble.jpg" download="2023-2024/Grupos/CPSGrupoRoble.jpg">
+                <img src="2023-2024/Grupos/CPSGrupoRoble.jpg" alt="Roble">
+            </a>
+            <div class="details">
+                <div class="name">
+                    <span class="heading">Grupo:</span>
+                    <span class="content">Roble</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalGroup2" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modalGroup2')">&times;</span>
+            <a href="2023-2024/Grupos/CPSVioleta.jpg.jpg" download="2023-2024/Grupos/CPSVioleta.jpg.jpg">
+                <img src="2023-2024/Grupos/CPSVioleta.jpg" alt="Violeta">
+            </a>
+            <div class="details"> 
+                <div class="name">
+                    <span class="heading">Grupo:</span>
+                    <span class="content">Violeta</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalGroup3" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modalGroup3')">&times;</span>
+            <a href="2023-2024/Grupos/CPSGrupoCupey.jpg" download="2023-2024/Grupos/CPSGrupoCupey.jpg">
+                <img src="2023-2024/Grupos/CPSGrupoCupey.jpg" alt="Cupey">
+            </a>
+            <div class="details">
+                <div class="name">
+                    <span class="heading">Grupo:</span>
+                    <span class="content">Cupey</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalGroupAll" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modalGroupAll')">&times;</span>
+            <a href="2023-2024/Grupos/CPSSeniors.jpg" download="2023-2024/Grupos/CPSSeniors.jpg">
+                <img src="2023-2024/Grupos/CPSSeniors.jpg" alt="Foto Senior Clase Aurora 2024">
+            </a>
+            <div class="details">
+                <div class="name">
+                    <span class="heading">Foto:</span>
+                    <span class="content">Clase Aurora 2024</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(modalId) {
+            var modal = document.getElementById(modalId);
+            modal.style.display = "flex";
+        }
+
+        function closeModal(modalId) {
+            var modal = document.getElementById(modalId);
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            var modals = document.getElementsByClassName("modal");
+            for (var i = 0; i < modals.length; i++) {
+                if (event.target == modals[i]) {
+                    modals[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+        </body>
+        </html>
+      </div>
+<!-- Footer -->
+<footer></footer>
       <div class="max-w-screen-xl py-16 mx-auto">
         <div class="grid grid-cols-1 gap-8 text-center mx-auto">
           <div>
@@ -151,19 +439,24 @@ Aunque aún no nos hemos graduado oficialmente, sabemos que este hito está a la
                       d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
                       clipRule="evenodd"
                     />
+
                   </svg>
                 </a>
               </div>
             </div>
           </div>
         </div>
+        <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@claseaurora_" data-unique-id="claseaurora_" data-embed-type="creator" style="max-width: 780px; min-width: 288px;" > <section> <a target="_blank" href="https://www.tiktok.com/@claseaurora_?refer=creator_embed">@claseaurora_</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
         <p class="mt-8 text-xs text-gray-600 text-center">
           © 2023 Developed and Designed by
-          <a
-            href="https://www.instagram.com/itzteckxyz"
-            class="underline"
-            >E. Cedeño</a
-          >
+          <br>
+          <br>
+          <div style="display: flex; justify-content: center;">
+            <a href="https://itzteck.xyz" target="_blank">
+              <img src="https://discord.c99.nl/widget/theme-4/921925641182535681.png" style="width: 300px;">
+            </a>
+          </div>
+        </p>
         </p>
       </div>
     </footer>
