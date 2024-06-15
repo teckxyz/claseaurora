@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>No Me Quiero Casar</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/5.1.0/mediaelementplayer.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/music-player.css"/>
+  </head>
+  <body>
+    <div id="player" style="display:none">
+      <div id="container">   
+        <div id="controls">
+          <div class="lecteur">
+            <audio id="music" class="fc-media">
+              <source src="../music/screenshot.mp3" type="audio/mpeg">
+            </audio>
+          </div>
+        </div>
+        <div id="cover">
+          <div id="box-1">
+            <div id="box-2">
+              <div id="box-3">
+                <div id="image" style="background: url('../images/screenshot.png');"></div>
+                <div id="player" style="display:block">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/5.1.0/mediaelement-and-player.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
+    <script src="../js/music-player.js"></script>
+  </body>
+</html>
